@@ -12,4 +12,6 @@ public class Company
     public string Country { get; set; } = string.Empty;
     public bool IsActive { get; set; }
     public DateTime InsuranceEndDate { get; set; }
+    
+    public bool HasActiveInsurancePolicy => IsActive && InsuranceEndDate > DateTime.Now;
 }
