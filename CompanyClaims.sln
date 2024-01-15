@@ -5,9 +5,9 @@ VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyClaims.Api", "CompanyClaims.Api\CompanyClaims.Api.csproj", "{8F9F6A09-39BC-43BC-A91C-24FAE56A3D5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyClaims.Data", "CompanyClaims.Data\CompanyClaims.Data.csproj", "{AD910DD3-2C2E-4F83-9029-0BA9459AE91F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyClaims.Data", "CompanyClaims.Data\CompanyClaims.Data.csproj", "{AD910DD3-2C2E-4F83-9029-0BA9459AE91F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyClaims.Core", "CompanyClaims.Core\CompanyClaims.Core.csproj", "{BB1C535A-D2A0-4270-97F4-9A080BB028D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyClaims.Core", "CompanyClaims.Core\CompanyClaims.Core.csproj", "{BB1C535A-D2A0-4270-97F4-9A080BB028D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

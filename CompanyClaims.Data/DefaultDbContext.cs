@@ -12,30 +12,13 @@ public class DefaultDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        var companyA = new Company
-        {
-            Id = 1,
-            Name = "CompanyA",
-            Country = "UK",
-            IsActive = true,
-            InsuranceEndDate = DateTime.UtcNow.AddDays(1),
-            Claims = [new Claim { UniqueClaimReference = "claim1", LossDate = DateTime.Now, IncurredLoss = 3.14m }]
-        };
-        var companyB = new Company
-        {
-            Id = 1,
-            Name = "CompanyB",
-            Country = "UK",
-            IsActive = true,
-            InsuranceEndDate = DateTime.UtcNow.AddDays(-1),
-        };
-
         // TODO: define actual column names and concrete SQL types
         modelBuilder.Entity<Company>()
             .HasMany(c => c.Claims)
             .WithOne(c => c.Company);
 
-        modelBuilder.Entity<Company>().HasData(companyA, companyB);
+        modelBuilder.Entity<Claim>()
+            .HasKey(c => c.UniqueClaimReference);
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
