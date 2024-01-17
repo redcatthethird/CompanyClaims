@@ -8,6 +8,7 @@ using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddTransient<CompanyService>();
+builder.Services.AddTransient<ClaimService>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(jsonOptions =>
