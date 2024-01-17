@@ -1,14 +1,12 @@
 ﻿using CompanyClaims.Api.Dtos;
 using CompanyClaims.Core.Models;
-using CompanyClaims.Data;
-
-using Microsoft.EntityFrameworkCore;
+using CompanyClaims.Data.Repos.Interfaces;
 
 namespace CompanyClaims.Api.Services;
 
-public class ClaimService(DefaultDbContext context)
+public class ClaimService(IClaimRepo repo)
 {
-    public Task<Claim?> GetClaim(string ucr) => context.Claims.FirstOrDefaultAsync(c => c.UniqueClaimReference == ucr);
+    public Task<Claim?> GetClaim(string ucr) => repo.GetByUcr(ucr);
 
     public async Task<bool> TryUpdateClaim(string ucr, ClaimUpdateDto newClaim)
     {
@@ -23,7 +21,7 @@ public class ClaimService(DefaultDbContext context)
         claim.IncurredLoss = newClaim.IncurredLoss;
         claim.IsClosed = newClaim.IsClosed;
 
-        await context.SaveChangesAsync();
+        await repo.Update(claim);
 
         return true;
     }

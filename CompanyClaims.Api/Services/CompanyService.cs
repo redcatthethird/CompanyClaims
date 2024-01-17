@@ -1,23 +1,13 @@
 ﻿using CompanyClaims.Core.Models;
-using CompanyClaims.Data;
-
-using Microsoft.EntityFrameworkCore;
+using CompanyClaims.Data.Repos.Interfaces;
 
 namespace CompanyClaims.Api.Services;
 
-public class CompanyService(DefaultDbContext context)
+public class CompanyService(ICompanyRepo repo)
 {
-    public async Task<IEnumerable<Company>> GetCompanies()
-    {
-        var companies = await context.Companies.ToListAsync();
-        return companies.AsEnumerable();
-    }
+    public Task<List<Company>> GetCompanies() => repo.GetAll();
 
-    public Task<Company?> GetCompany(int id) => context.Companies.FirstOrDefaultAsync(c => c.Id == id);
+    public Task<Company?> GetCompany(int id) => repo.GetById(id);
 
-    public async Task<IEnumerable<Claim>?> GetClaimsForCompany(int id)
-    {
-        var company = await context.Companies.Include(c => c.Claims).FirstOrDefaultAsync(c => c.Id == id);
-        return company?.Claims.AsEnumerable();
-    }
+    public async Task<List<Claim>?> GetClaimsForCompany(int id) => (await repo.GetById(id))?.Claims;
 }
